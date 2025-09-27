@@ -15,8 +15,24 @@
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
     }
-
-
+    button, select {
+        cursor: pointer;
+    }
+    #horaireSection table, #horaireSection td, #horaireSection th {
+        border: 1px solid #ccc;
+    }
+    #horaireSection table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    #horaireSection th, #horaireSection td {
+        padding: 8px;
+        text-align: center;
+    }
+    #horaireSection th {
+        background: #0047AB;
+        color: white;
+    }
 .box-section {
   border: 3px solid #0066cc;
   border-radius: 10px;
@@ -373,8 +389,8 @@ nav {
   </a>
   <ul id="options-submenu" class="submenu" style="display: none;">
    <li><a href="#">Nutrition</a></li>
-        <li><a href="#">Construction</a></li>
         <li><a href="#">Sociale</a></li>
+        <li><a href="#">Construction</a></li>
         <li><a href="#">Commeriale & Gestion</a></li>
   </ul>
 </li>          
@@ -384,7 +400,67 @@ nav {
     <li class="has-submenu">
       <a href="#" class="toggle-link">⏰ HORAIRE DES COURS<span class="toggle-icon" >+</span></a> 
        <ul class="submenu">
-           <!DOCTYPE button HORAIRE>
+           
+           <button id="btnHoraires" style="padding:12px 24px; background:#0047AB; color:white; border:none; border-radius:5px; font-size:18px;">
+    Horaires de Cours
+  </button>
+
+  <div id="selectionSection" style="display:none; background:white; padding:20px; border-radius:8px; margin-top:20px;">
+    <h3 style="color:#0047AB; text-align:center;">SECTION  DE SELECTION</h3>
+
+    <div style="margin-bottom:10px;">
+      <select id="typeHoraire" style="width:100%; padding:10px; font-size:16px;">
+        <option value="">Sélectionnez un type d'horaire</option>
+        <option value="horaireOrdinaire">Horaire Ordinaire</option>
+        <option value="horaireExamens">Horaire Examens</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <select id="classeHoraire" style="width:100%; padding:10px; font-size:16px;">
+        <option value="">Sélectionnez votre classe</option>
+     <option value="7eme_annee">7ème Année</option>
+      <option value="8eme_annee">8ème Année</option>
+      <option value="1ere_annee_htn">1er Année HTN</option>
+      <option value="1ere_annee_hts">1er Année HTS</option>
+     <option value="1ere_annee_htc">1er Année HTC</option>
+     <option value="1ere_annee_cg">1er Année CE.G</option>
+     <option value="2eme_annee_htn">2ème Année HTN</option>
+      <option value="2eme_annee_hts">2ème Année HTS</option>
+     <option value="2eme_annee_htc">2ème Année HTC</option>
+      <option value="2eme_annee_cg">2ème Année CE.G</option>
+     <option value="3eme_annee_htn">3ème Année HTN</option>
+      <option value="3eme_annee_hts">3ème Année HTS</option>
+     <option value="3eme_annee_htc">3ème Année HTC</option>
+      <option value="3eme_annee_cg">3ème Année CE.G</option>
+      <option value="4eme_annee_htn">4ème Année HTN</option>
+      <option value="4eme_annee_hts">4ème Année HTS</option>
+     <option value="4eme_annee_htc">4ème Année HTC</option>
+      <option value="4eme_annee_cg">4ème Année CE.G</option>
+      <!-- Ajoute plus selon ton projet -->
+      </select>
+    </div>
+
+    <div style="display:flex; justify-content:space-between;">
+      <button id="btnVoirHoraire" style="padding:10px 20px; background:#0047AB; color:white; border:none; border-radius:5px;">
+        Voir l’horaire
+      </button>
+      <button id="btnAnnulerHoraire" style="padding:10px 20px; background:#ccc; color:black; border:none; border-radius:5px;">
+        Annuler
+      </button>
+    </div>
+  </div>
+
+  <div id="horaireSection" style="display:none; background:white; padding:20px; border-radius:8px; margin-top:20px;">
+    <h3 id="titreHoraire" style="color:#0047AB; text-align:center;"></h3>
+    <div id="tableHoraireContainer" style="overflow-x:auto;"></div>
+    <button id="btnFermerHoraire" style="margin-top:20px; padding:10px 20px; background:#d9534f; color:white; border:none; border-radius:5px;">
+      Fermer
+    </button>
+  </div>
+
+  <p id="msgErreurHoraire" style="color:red; text-align:center; margin-top:10px;"></p>
+  
       </ul>
     </li>
 </nav>
@@ -402,8 +478,8 @@ nav {
   <!-- SECTION CONNEXION -->
   <div id="loginSection" style="display:none; background:white; padding:20px; border-radius:8px; margin-top:20px;">
     <h2 style="background:#0047AB; color:white; padding:6px; text-align:center; border-radius:2px; font-size:22px;">ESPACE  CONNEXION</h2>
-    <input id="nom" placeholder="Nom" style="display:block; width:100%; margin-bottom:10px; padding:10px; font-size:16px;">
-    <input id="code" placeholder="Code" style="display:block; width:100%; margin-bottom:10px; padding:10px; font-size:16px;">
+    <input id="nom" placeholder="NOM et POST NOM EN MAJUSCULE" style="display:block; width:100%; margin-bottom:10px; padding:10px; font-size:12px;">
+    <input id="code" placeholder="CODE" style="display:block; width:100%; margin-bottom:10px; padding:10px; font-size:14px;">
         <select id="classe" required style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
       <option value="">Sélectionnez votre classe</option>
       <option value="7eme_annee">7ème Année</option>
@@ -430,7 +506,7 @@ nav {
       <button onclick="connexion()" style="padding:10px 20px; background:#0047AB; color:white; border:none; border-radius:5px;">Se connecter</button>
       <button onclick="location.reload()" style="padding:10px 20px; background:#ccc; border:none; border-radius:5px;">Annuler</button>
     </div>
-    <p id="msg-erreur" style="color:red; margin-top:10px;"></p>
+    <p id="msg-erreur" style="color:red; text-align: center; margin-top:10px;"></p>
   </div>
 
   <!-- SECTION TABLEAU DE BORD -->
@@ -438,7 +514,7 @@ nav {
     <h2 style="background:#0047AB; color:white; padding:10px; text-align:center; border-radius:5px; font-size:22px;">ESPACE  ELEVE</h2>
     <p id="bienvenue"></p>
     <select id="anneeSelect" style="width:100%; padding:10px; margin-bottom:20px;">
-      <option disabled selected>Sélectionnez une année</option>
+      <option disabled selected>Sélectionnez l'année scolaire</option>
       <option>2024-2025</option>
       <option>2025-2026</option>
     </select>
@@ -446,23 +522,24 @@ nav {
     <button onclick="chargerResultats()" style="flex:1; padding:10px; background:#0047AB; color:white; border:none; border-radius:5px;">Résultat</button>
       <button onclick="chargerFinances()" style="flex:1; padding:10px; background:#aaa; border:none; border-radius:5px;">Finance</button>
       <button onclick="location.reload()" style="flex:1; padding:10px; background:#ccc; border:none; border-radius:5px;">Se déconnecter</button>
-      <p id="msg-erreur" style="color:red; margin-top:10px;"></p>
+      <p id="msg-erreur" style="color:red; text-align: center; margin-top:10px;"></p>
     </div>
   </div>
   
   <!-- SECTION RÉSULTATS -->
   <div id="resultats" style="display:none; background:white; margin-top:20px; padding:20px; border-radius:8px;">
     <div id="resultat-tableau"></div>
-    <h2 style="background:#0047AB; color:white; padding:10px; text-align:center; border-radius:5px; font-size:22px;">RESULTAT  SCOLAIRE</h2>
+    
+    <h2 id ="titre-resultat" style="background:#0047AB; color:white; padding:10px; text-align:center; border-radius:5px; font-size:22px;"></h2>
         <p id="bienvenue"></p>
-        <p id="msg-erreur" style="color:red; margin-top:10px;"></p>
+        <p id="msg-erreur" style="color:red; text-align: center; margin-top:10px;"></p>
   </div>
 <!-- SECTION FINANCES -->
   <div id="finance" style="display:none; background:white; margin-top:20px; padding:20px; border-radius:8px;">
     <div id="finance-table"></div>
-    <h2 style="background:#0047AB; color:white; padding:10px; text-align:center; border-radius:5px; font-size:22px;">PAIEMENT  SCOLAIRE</h2>
+    <h2 id= "titre-finances" style="background:#0047AB; color:white; padding:10px; text-align:center; border-radius:5px; font-size:22px;"></h2>
         <p id="bienvenue"></p>
-        <p id="msg-erreur" style="color:red; margin-top:10px;"></p>
+        <p id="msg-erreur" style="color:red; text-align: center; margin-top:10px;"></p>
   </div>
   
     </div>
@@ -676,7 +753,7 @@ Bonne chance à tous ! <br> <br> <br> <br> KASEREKA VYAMBWERA Edmond <br> Chef d
 
     <div style="display: flex; align-items: center; margin: 10px;">
         <img src="https://img.icons8.com/ios-filled/30/007bff/internet.png" alt="Site Web" style="margin-right: 10px;">
-        <a href="https://Institut-Menuib0.noecities.org" target="_blank" style="text-decoration: none; color: black;">Institut-menuib0.noecities.org</a>
+        <a href="https://menuibo.netlify.app" target="_blank" style="text-decoration: none; color: black;">menuibo.netlify.app</a>
     </div>
 </section>
 
@@ -834,137 +911,250 @@ function closePopup(id) {
 <script>
     let utilisateur = null;
 
-window.connexion = async function() {
-      let nom = document.getElementById("nom").value.trim();
-      let code = document.getElementById("code").value.trim();
-      let classe = document.getElementById("classe").value;
-      if (!nom || !code || !classe) {
-        document.getElementById("msg-erreur").textContent = ( "Veuillez remblir tous les champs");
-        return;
-      }
-      try {
-        const snap = await get(ref(db, `utilisateurs/classe/{code}`));
-        if (snap.exists()) {
-          const user = snap.val();
-          if (user.nom === nom) {
-            utilisateur = { nom, code, classe };
-        document.getElementById("loginSection").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
-        document.getElementById("bienvenue").innerHTML = `Bienvenue <strong>${nom}</strong> !<br>Classe : <strong>${classe}</strong>`;
-    } else {
-        document.getElementById("msg-erreur").textContent = ("Nom incorrect ou pas trouvé");
-          }
-        } else {
-            document.getElementById("msg-erreur").textContent = ("Utilisateur non trouvé");
+    window.connexion = async function() {
+        let nom = document.getElementById("nom").value.trim();
+        let code = document.getElementById("code").value.trim();
+        let classe = document.getElementById("classe").value;
+        if (!nom || !code || !classe) {
+            document.getElementById("msg-erreur").textContent = ("Veuillez remplir tous les champs");
+            return;
         }
-      } catch (err) {
-        console.error(err);
-        document.getElementById("msg-erreur").textContent = ("Erreur lors de la connexion au serveur");
-      }
-    };
-window.chargerResultats = async function() {
-      const annee = document.getElementById("anneeSelect").value;
-      if (!annee) {
-        document.getElementById("msg-erreur").textContent = ("Sélectionnez une année scolaire");
-        return;
-      }
-      const chemin = `resultats/classePath(utilisateur.classe)/{utilisateur.code}/annee`;
-      try{ 
-        const snap = await get(ref(db, chemin));
-        if (!snap.exists()) 
-          document.getElementById("msg-erreur").textContent = ("Aucun résultat trouvé, Veuillez passer à la préfecture, Merci");
-          return;
-        const data = snap.val();
-        if (!data.published) 
-        document.getElementById("msg-erreur").textContent = ("Résultats non publiés, Veuillez vous connecter ulterieurement, Merci");
-          return;
-          
-          
-          
-        if (data.seuilAtteint<0) 
-          document.getElementById("msg-erreur").textContent = ("Veuillez passer à la comptabilité pour régularisez votre situation de finance, enfin de voir vos resultats, Merci");
-          return;
- // Création du tableau des résultats
-        const champs = ["periode1", "periode2", "periode3", "periode4", "examen1", "examen2", "total_semestre1", "total_semestre2", "total_general"];
-        let header = "<tr style='background:#0047AB; color:white;'><th></th>";
-        champs.forEach(c =>  {header += `<th>{c}</th><th>Place</th>`; });
-        header += "</tr>";
-
-        let row = "<tr><td>Pourcentage</td>";
-        champs.forEach(c => { row += `<td>data[c]?.pourcentage ?? 0{data[c]?.place ?? "-"}</td>`; });
-        row += "</tr>";
-
-        const tableHTML = `
-        <table style="width:100%; border-collapse:collapse; text-align:center; margin-top:20px;">
-            header{row}
-          </table>
-        `;
-      document.getElementById("dashboard").style.display = "none";
-      document.getElementById("resultats").style.display = "block";
-      document.getElementById("bienvenue")
-      innerHTML = `Bienvenue <strong>${nom}</strong> !<br>Classe : <strong>${classe}</strong>`;
-      document.getElementById("finances").style.display = "none";
-    }
-    catch (err) {
-        console.error(err);
-        document.getElementById("msg-erreur").textContent = ("Erreur lors de la récupération des résultats");
-     }
-    
-};
-
- window.chargerFinances = async function() {
-     const annee = document.getElementById("anneeSelect").value;
-      if (!annee) {
-        document.getElementById("msg-erreur").textContent = ("Sélectionnez une année scolaire");
-        return;
-              const chemin = `finances/classePath(utilisateur.classe)/{utilisateur.code}/{annee}`;
-      try {
-        const snap = await get(ref(db, chemin));
-        if (!snap.exists()) {
-        document.getElementById("msg-erreur").textContent = ("Aucune donnée financière trouvée, Veuillez passer à la comptabilité, Merci");
-          return;
+        try {
+            const snap = await get(ref(db, `utilisateurs/${classe}/${code}`));
+            if (snap.exists()) {
+                const user = snap.val();
+                if (user.nom === nom) {
+                    utilisateur = { nom, code, classe };
+                    document.getElementById("loginSection").style.display = "none";
+                    document.getElementById("dashboard").style.display = "block";
+                    document.getElementById("bienvenue").innerHTML = `Bienvenue <strong>${nom}</strong> !<br>Classe : <strong>${classe}</strong>`;
+                } else {
+                    document.getElementById("msg-erreur").textContent = ("Noms incorrect ou pas trouvé");
+                }
+            } else {
+                document.getElementById("msg-erreur").textContent = ("élève non trouvé");
+            }
+        } catch (err) {
+            console.error(err);
+            document.getElementById("msg-erreur").textContent = ("Erreur lors de la connexion à la base des données");
         }
-        const d = snap.val();
-        const payé = Number(d.paye) || 0;
-        const divers = Number(d.fraisDivers) || 0;
-        const constr = Number(d.fraisConstruction || d.fraisTE) || 0;
-        const rel = Number(d.rel) || 0;
-        const totalClasse = Number(d.totalClasse || 0);
-
-        const totalPaye = payé + divers + constr - rel;
-        const restant = totalClasse - totalPaye;
-
-        const tableHTML = `
-          <table style="width:100
-            <tr style="background:#0047AB; color:white;">
-              <th>Payé</th><th>Frais Divers</th><th>Frais Construction / TE</th><th>Rel</th>
-            </tr>
-            <tr>
-              <td style="color:black;">${payé}</td>
-              <td style="color:green;">${divers}</td>
-              <td style="color:black;">${constr}</td>
-              <td style="color:red;">${rel}</td>
-            </tr>
-          </table>
-          <h4 style="color:black; text-align:center; margin-top:10px;">Total Payé: <strong>${totalPaye}</strong></h4>
-          <h4 style="color:blue; text-align:center;">Restant à Payer: <strong>${restant}</strong></h4>
-        `;
-      document.getElementById("dashboard").style.display = "none";
-      document.getElementById("finances").style.display = "block";
-      document.getElementById("bienvenue")
-      innerHTML = `Bienvenue <strong>${nom}</strong> !<br>Classe : <strong>${classe}</strong>`;
-      document.getElementById("resultats").style.display = "none";
-      } catch (err) {
-        console.error(err);
-        document.getElementById("msg-erreur").textContent = ("Erreur lors de la récupération des finances");
-      }
     };
+
+    window.chargerResultats = async function() {
+        const annee = document.getElementById("anneeSelect").value;
+        if (!annee) {
+            document.getElementById("msg-erreur").textContent = ("Sélectionnez une année scolaire");
+            return;
+        }
+
+        const cheminResultats = `resultats/${utilisateur.id_eleve}/${annee}/${publishedResults}`;
+        const cheminFinances = `parametres_classes/finances/${annee}/${utilisateur.id_eleve}/${utilisateur.classe}`;
+
+        try {
+            // Première requête : vérifier les finances
+            const finSnap = await get(ref(db, cheminFinances));
+            if (finSnap.exists()) {
+                const finData = finSnap.val();
+                const totalPaye = Number(finData.paye || 0) + Number(finData.fraisDivers || 0) + Number(finData.fraisTE || finData.fraisConstruction || 0) - Number(finData.rel || 0);
+                const seuil = Number(finData.seuil || 0);
+
+                if (totalPaye < seuil) {
+                    document.getElementById("msg-erreur").textContent = ("Veuillez passer à la comptabilité pour régulariser votre situation de finance, afin de voir vos résultats. Merci.");
+                    return;
+                }
+            } else {
+                document.getElementById("msg-erreur").textContent = ("Aucune donnée financière trouvée, Veuillez passer à la comptabilité, Merci.");
+                return;
+            }
+
+            // Deuxième requête : récupérer les résultats si la condition financière est remplie
+            const resSnap = await get(ref(db, cheminResultats));
+
+            if (!resSnap.exists()) {
+                document.getElementById("msg-erreur").textContent = ("Aucun résultat trouvé, Veuillez passer à la préfecture, Merci.");
+                return;
+            }
+
+            const data = resSnap.val();
+            if (!data.published) {
+                document.getElementById("msg-erreur").textContent = ("Résultats non publiés, Veuillez vous connecter ultérieurement, Merci");
+                return;
+            }
+
+            // Création du tableau des résultats
+            const champs = ["periode1", "periode2", "periode3", "periode4", "examen1", "examen2", "total_semestre1", "total_semestre2", "total_general"];
+            let header = "<tr style='background:#0047AB; color:white;'><th></th>";
+            champs.forEach(c => { header += `<th>${c}</th><th>Place</th>`; });
+            header += "</tr>";
+
+            let row = "<tr><td>Pourcentage</td>";
+            champs.forEach(c => { row += `<td>${data[c]?.pourcentage ?? 0}</td><td>${data[c]?.place ?? "-"}</td>`; });
+            row += "</tr>";
+
+            const tableHTML = `
+                <table style="width:100%; border-collapse:collapse; text-align:center; margin-top:20px;">
+                    ${header}
+                    ${row}
+                </table>
+            `;
+            
+            document.getElementById("dashboard").style.display = "none";
+            document.getElementById("resultats").style.display = "block";
+            document.getElementById ("titre-resultat").textContent = `votre Resultats, Année scolaire: (${annee})`;
+            document.getElementById("bienvenue").innerHTML = `Bienvenue <strong>${utilisateur.nom}</strong> !<br>Classe : <strong>${utilisateur.classe}</strong> <br> Année : <strong> ${annee} </strong>`;
+            document.getElementById("finances").style.display = "none";
+            document.getElementById("resultat").innerHTML = tableHTML;
+
+        } catch (err) {
+            console.error(err);
+            document.getElementById("msg-erreur").textContent = ("Erreur lors de la récupération des résultats dans la base de données");
+        }
+    };
+
+    window.chargerFinances = async function() {
+        const annee = document.getElementById("anneeSelect").value;
+        if (!annee) {
+            document.getElementById("msg-erreur").textContent = ("Sélectionnez une année scolaire");
+            return;
+        }
+        const chemin = `parametres_classes/finances/${utilisateur.id_eleve}/${utilisateur.classe}/${annee}`;
+        try {
+            const snap = await get(ref(db, chemin));
+            if (!snap.exists()) {
+                document.getElementById("msg-erreur").textContent = ("Aucune donnée financière trouvée, Veuillez passer à la comptabilité, Merci");
+                return;
+            }
+            const d = snap.val();
+            const paye = Number(d.payé) || 0;
+            const divers = Number(d.frais_divers) || 0;
+            const constr = Number(d.frais_construction || d.frais_TE) || 0;
+            const rel = Number(d.rel) || 0;
+            const totalClasse = Number(d.total_classe || 0);
+
+            const totalPaye = paye + divers + constr - rel;
+            const restant = totalClasse - totalPaye;
+
+            const tableHTML = `
+                <table style="width:100%">
+                    <tr style="background:#0047AB; color:white;">
+                        <th>Payé</th><th>Frais Divers</th><th>Frais Construction / TE</th><th>Rel</th>
+                    </tr>
+                    <tr>
+                        <td style="color:black;">${paye}</td>
+                        <td style="color:green;">${divers}</td>
+                        <td style="color:black;">${constr}</td>
+                        <td style="color:red;">${rel}</td>
+                    </tr>
+                </table>
+                <h4 style="color:black; text-align:center; margin-top:10px;">Total Payé: <strong>${totalPaye}</strong></h4>
+                <h4 style="color:blue; text-align:center;">Restant à Payer: <strong>${restant}</strong></h4>
+            `;
+            document.getElementById("dashboard").style.display = "none";
+            document.getElementById("finances").style.display = "block";
+            document.getElementById ("titre-finances").textContent = `votre situation financière, Année Scolaire: (${annee})`;
+            document.getElementById("bienvenue").innerHTML = `Bienvenue <strong>${utilisateur.nom}</strong> !<br>Classe : <strong>${utilisateur.classe}</strong> <br> Année: <strong> ${annee} </strong>`;
+            document.getElementById("resultats").style.display = "none";
+            document.getElementById("finances").innerHTML = tableHTML;
+
+        } catch (err) {
+            console.error(err);
+            document.getElementById("msg-erreur").textContent = ("Erreur lors de la récupération des finances dans la base de données");
+        }
+    };
+
     function classePath(c) {
-// si dans ta base tu utilises différemment les noms de classe
-      return c;  
+        return c;
     }
-   }
-  </script>
+</script>
+
+<script>
+
+    const btnHoraires = document.getElementById("btnHoraires");
+    const selectionSection = document.getElementById("selectionSection");
+    const btnVoirHoraire = document.getElementById("btnVoirHoraire");
+    const btnAnnulerHoraire = document.getElementById("btnAnnulerHoraire");
+    const typeSelect = document.getElementById("typeHoraire");
+    const classeSelect = document.getElementById("classeHoraire");
+    const horaireSection = document.getElementById("horaireSection");
+    const titreHoraire = document.getElementById("titreHoraire");
+    const tableHoraireContainer = document.getElementById("tableHoraireContainer");
+    const btnFermerHoraire = document.getElementById("btnFermerHoraire");
+    const msgErreurHoraire = document.getElementById("msgErreurHoraire");
+
+    btnHoraires.addEventListener("click", () => {
+      msgErreurHoraire.textContent = "";
+      selectionSection.style.display = "block";
+      horaireSection.style.display = "none"; // S'assurer que l'horaire précédent est caché
+    });
+
+    btnAnnulerHoraire.addEventListener("click", () => {
+      selectionSection.style.display = "none";
+      msgErreurHoraire.textContent = "";
+      typeSelect.value = "";
+      classeSelect.value = "";
+    });
+
+    btnFermerHoraire.addEventListener("click", () => {
+      horaireSection.style.display = "none";
+      selectionSection.style.display = "none";
+    });
+
+    btnVoirHoraire.addEventListener("click", async () => {
+      msgErreurHoraire.textContent = "";
+      
+      const type = typeSelect.value;
+      const classe = classeSelect.value;
+
+      if (!type || !classe) {
+        msgErreurHoraire.textContent = ("Veuillez sélectionner un type d'horaire et votre classe.");
+        return;
+      }
+
+      try {
+        const snap = await get(ref(db, `horaires/${classe}/${type}`));
+        if (!snap.exists()) {
+          msgErreurHoraire.textContent = ("Aucun horaire trouvé pour cette classe et ce type.");
+          return;
+        }
+        const data = snap.val();
+
+        // Créer les en-têtes de colonnes
+        const jours = Object.keys(data);
+        const creneauxHoraires = jours.length > 0 ? Object.keys(data[jours[0]]) : [];
+        
+        let html = "<table style='width:100%; border-collapse:collapse; text-align:center;'>";
+        html += "<tr style='background:#0047AB; color:white;'><th>Jour</th>";
+        creneauxHoraires.forEach(creneau => {
+          html += `<th>${creneau}</th>`;
+        });
+        html += "</tr>";
+
+        // Remplir le tableau
+        jours.forEach(jour => {
+          html += `<tr><td style='border:1px solid #ccc; padding:8px; font-weight:bold;'>${jour}</td>`;
+          creneauxHoraires.forEach(creneau => {
+            html += `<td style='border:1px solid #ccc; padding:8px;'>${data[jour][creneau] || ""}</td>`;
+          });
+          html += "</tr>";
+        });
+        
+        html += "</table>";
+
+        // Afficher l'horaire
+        selectionSection.style.display = "none";
+        titreHoraire.textContent = `Horaire ${type === "ordinaire" ? "ordinaire" : "examens"} - ${classe}`;
+        tableHoraireContainer.innerHTML = html;
+        horaireSection.style.display = "block";
+      } 
+      catch (err) {
+        console.error(err);
+        msgErreurHoraire.textContent = ("Erreur lors de la connexion à la base de données");
+      }
+    });
+
+    // La fonction classePath n'est pas nécessaire ici si les valeurs de l'option sont les mêmes que les clés Firebase
+    // mais si elle est utilisée ailleurs, il est bon de la garder.
+</script>
 
 </body>
 </html>
